@@ -18,7 +18,6 @@
         currentFilter === 'all' ||
         (currentFilter === 'active' && !isDone) ||
         (currentFilter === 'done' && isDone);
-      // Inline style: "#todo-list li" in the CSS is more specific than ".hidden".
       item.style.display = show ? '' : 'none';
     });
   }
@@ -42,7 +41,7 @@
   function handleAdd(event) {
     event.preventDefault();
 
-    if (input.value === '') {
+    if (input.value.trim() === '') {
       errorMsg.classList.remove('hidden');
       return;
     }
@@ -53,10 +52,8 @@
     updateCounter();
   }
 
-  // The Add button and the Enter key both submit the form.
   form.addEventListener('submit', handleAdd);
 
-  // Event delegation: one listener handles every item.
   list.addEventListener('click', function (event) {
     let item = event.target.closest('li');
     if (!item) {
